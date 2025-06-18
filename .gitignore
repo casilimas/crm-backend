@@ -1,0 +1,48 @@
+/uploads
+
+# 🚫 Ignorar node_modules y build
+node_modules/
+dist/
+build/
+
+# ⚙️ Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# 📝 Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs/
+*.log
+
+# 📦 Archivos temporales y del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# 💾 Base de datos local o dumps
+*.sqlite
+*.db
+dump.sql
+*.pid
+
+# 🧪 Cobertura de tests
+coverage/
+
+# 💻 Archivos de entorno de IDEs
+.vscode/
+.idea/
+*.code-workspace
+
+# 📦 Archivos de empaquetado y temporales
+*.tgz
+*.gz
+*.zip
+
+# 📘 Markdown generado de resumen de rutas (opcional)
+resumen.md
+
