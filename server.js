@@ -50,7 +50,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/departments', departmentRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/notifications', notificationRoutes);
-app.use('/api', avatarRoutes); 
+app.use('/api/users', avatarRoutes); 
 app.use('/api/stats', statsRoutes);
 app.use('/api', likeRoutes);
 app.use('/api/comments', commentRoutes);
