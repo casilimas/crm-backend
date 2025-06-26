@@ -12,6 +12,7 @@ const moveDepartment = require('../controllers/user/moveDepartment');
 const getUserByEmail = require('../controllers/user/getUserByEmail');
 const updateStatus = require('../controllers/user/updateStatus');
 const getAllUsers = require('../controllers/user/getAllUsers');
+const getUserById = require('../controllers/user/getUserById');
 
 
 
@@ -61,7 +62,7 @@ router.post('/find-by-email', protect, getUserByEmail);
 router.put('/:id/status', protect, isAdminOrBoss, updateStatus);
 
 
-
+router.get('/:id', protect, getUserById);
 
 
 
