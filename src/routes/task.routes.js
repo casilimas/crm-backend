@@ -31,8 +31,7 @@ router.get('/by-department/:departmentId', protect, isAdminOrBoss, getTasksByDep
 // ✅ Listar tareas por ID de usuario
 router.get('/user/:id', protect, getTasksByUser);
 
-// ✅ Ver tarea por ID (esto siempre debe ir después de las rutas más específicas)
-router.get('/:id', protect, getTaskById);
+
 
 // ✅ Completar tarea con imágenes y texto
 router.put('/:id/complete', protect, upload.array('images', 4), completeTask);
@@ -44,6 +43,10 @@ router.put('/:id', protect, updateTask);
 router.delete('/pending/:id', protect, deletePendingTask);
 
 router.get('/assigned-by-me', protect, isAdminOrBoss, eliminarTareaPendiente);
+
+
+// ✅ Ver tarea por ID (esto siempre debe ir después de las rutas más específicas)
+router.get('/:id', protect, getTaskById);
 
 
 module.exports = router;
