@@ -11,6 +11,8 @@ const updateTask = require('../controllers/tasks/updateTask');
 const getTasksByDepartmentInRange = require('../controllers/user/getTasksByDepartmentInRange');
 const getHistoricalTasks = require('../controllers/tasks/getHistoricalTasks');
 const deletePendingTask = require('../controllers/tasks/deletePendingTask');
+const eliminarTareaPendiente = require('../controllers/tasks/eliminarTareaPendiente');
+
 
 
 
@@ -40,6 +42,9 @@ router.put('/:id', protect, updateTask);
 
 // 🗑️ Eliminar tarea pendiente (solo quien la asignó)
 router.delete('/pending/:id', protect, deletePendingTask);
+
+router.get('/assigned-by-me', protect, isAdminOrBoss, eliminarTareaPendiente);
+
 
 
 module.exports = router;
