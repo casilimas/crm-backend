@@ -46,7 +46,6 @@ router.delete('/pending/:id', protect, deletePendingTask);
 router.get('/assigned-by-me', protect, isAdminOrBoss, eliminarTareaPendiente);
 
 
-
 module.exports = router;
 
 
