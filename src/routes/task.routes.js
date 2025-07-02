@@ -13,6 +13,8 @@ const getHistoricalTasks = require('../controllers/tasks/getHistoricalTasks');
 const deletePendingTask = require('../controllers/tasks/deletePendingTask');
 const eliminarTareaPendiente = require('../controllers/tasks/eliminarTareaPendiente');
 const publicarTareaEnMuro = require('../controllers/tasks/finalizaPublicarTarea');
+const getPublishedTasks = require('../controllers/tasks/getPublishedTasks');
+
 
 
 
@@ -28,6 +30,13 @@ router.get('/historical', protect, getHistoricalTasks);
 
 // 📊 Listar tareas por departamento en rango de fechas
 router.get('/by-department/:departmentId', protect, isAdminOrBoss, getTasksByDepartmentInRange);
+
+
+// ✅ Obtener tareas publicadas (para el muro) — DEBE IR ANTES DE `/:id`
+router.get('/published', protect, getPublishedTasks);
+
+
+
 
 // ✅ Listar tareas por ID de usuario
 router.get('/user/:id', protect, getTasksByUser);
