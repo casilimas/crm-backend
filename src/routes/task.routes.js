@@ -12,6 +12,7 @@ const getTasksByDepartmentInRange = require('../controllers/user/getTasksByDepar
 const getHistoricalTasks = require('../controllers/tasks/getHistoricalTasks');
 const deletePendingTask = require('../controllers/tasks/deletePendingTask');
 const eliminarTareaPendiente = require('../controllers/tasks/eliminarTareaPendiente');
+const publicarTareaEnMuro = require('../controllers/tasks/finalizaPublicarTarea');
 
 
 
@@ -35,6 +36,10 @@ router.get('/user/:id', protect, getTasksByUser);
 
 // ✅ Completar tarea con imágenes y texto
 router.put('/:id/complete', protect, upload.array('images', 4), completeTask);
+
+// ✅ Publicar tarea en el muro 
+router.put('/:id/publish', protect, publicarTareaEnMuro);
+
 
 // ✅ Actualizar tarea
 router.put('/:id', protect, updateTask);

@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 
 const taskSchema = new mongoose.Schema(
@@ -31,28 +30,15 @@ const taskSchema = new mongoose.Schema(
       default: 'pendiente',
     },
     assignedTo: {
-  type: mongoose.Schema.Types.ObjectId,
-  ref: 'User',
-  required: false, // 🔁 Cambiar de true a false
-  default: null    // ✅ Asegurar que pueda ser null
-},
-
-
-
-
-
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: false,
+      default: null,
+    },
     originalUserName: {
-  type: String,
-  default: null,
-},
-
-
-
-
-
-
-
-
+      type: String,
+      default: null,
+    },
     assignedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
@@ -79,6 +65,14 @@ const taskSchema = new mongoose.Schema(
         public_id: String,
       },
     ],
+    // 🟢 NUEVOS CAMPOS
+    published: {
+      type: Boolean,
+      default: false,
+    },
+    publishedAt: {
+      type: Date,
+    },
   },
   {
     timestamps: true,
