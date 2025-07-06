@@ -1,9 +1,6 @@
-
-
 const Task = require('../../models/Task');
 const cloudinary = require('../../config/cloudinary');
 
-// Función para subir imagen desde buffer
 const streamUpload = (fileBuffer, folder) => {
   return new Promise((resolve, reject) => {
     const stream = cloudinary.uploader.upload_stream(
@@ -33,7 +30,6 @@ const completeTask = async (req, res) => {
       return res.status(403).json({ message: 'Solo el usuario asignado puede completar la tarea' });
     }
 
-    // 🚫 Evitar completar múltiples veces
     if (task.status === 'completada') {
       return res.status(400).json({ message: 'La tarea ya fue completada anteriormente' });
     }
@@ -43,8 +39,6 @@ const completeTask = async (req, res) => {
     if (req.files && req.files.length > 0) {
       for (const file of req.files) {
         const mime = file.mimetype;
-
-        // Solo aceptar imágenes válidas
         if (!['image/jpeg', 'image/jpg', 'image/png'].includes(mime)) {
           return res.status(400).json({
             message: `Formato de imagen no permitido: ${mime}. Solo se permiten JPG, JPEG o PNG.`
@@ -59,31 +53,23 @@ const completeTask = async (req, res) => {
       }
     }
 
-
-
-
-
-    // 🟥 NUEVA VALIDACIÓN ESTRICTA
     if (!report || uploadedImages.length === 0) {
       return res.status(400).json({
         message: 'Para completar la tarea debes incluir tanto el reporte como al menos una imagen.'
       });
     }
-    // 🟥 FIN DE VALIDACIÓN NUEVA
 
+    // ✅ Actualización con publicación automática
+    await Task.findByIdAndUpdate(id, {
+      status: 'completada',
+      completedAt: new Date(),
+      report,
+      images: uploadedImages,
+      published: true,
+      publishedAt: new Date()
+    });
 
-
-
-
-    
-    task.status = 'completada';
-    task.completedAt = new Date();
-    task.report = report;
-    task.images = uploadedImages;
-
-    await task.save();
-
-    res.json({ message: 'Tarea completada exitosamente', task });
+    res.json({ message: 'Tarea completada y publicada exitosamente' });
   } catch (error) {
     console.error('❌ Error al completar la tarea:', error);
     res.status(500).json({
@@ -94,14 +80,3 @@ const completeTask = async (req, res) => {
 };
 
 module.exports = completeTask;
-
-
-
-
-
-
-
-
-
-
-
