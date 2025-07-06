@@ -11,10 +11,8 @@ connectDB();
 const app = express();
 
 // 🛡️ Middleware CORS (múltiples orígenes permitidos)
-const allowedOrigins = [
-  'http://localhost:5173',
-  process.env.CLIENT_URL // 👈 ejemplo: 'https://tudominio.vercel.app'
-];
+const allowedOrigins = ['http://localhost:5173'];
+
 
 app.use(cors({
   origin: function (origin, callback) {
