@@ -10,9 +10,12 @@ connectDB();
 // Inicializar Express
 const app = express();
 
-// 🛡️ Middleware CORS (múltiples orígenes permitidos)
-const allowedOrigins = ['http://localhost:5173'];
-
+// 🛡️ Middleware CORS (permitir orígenes seguros)
+const allowedOrigins = [
+  'http://localhost:5173',
+  // 👇 Reemplaza esta línea con el dominio real de tu frontend cuando lo tengas
+  'https://tu-frontend.vercel.app'
+];
 
 app.use(cors({
   origin: function (origin, callback) {
