@@ -14,7 +14,7 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',
   // 👇 Reemplaza esta línea con el dominio real de tu frontend cuando lo tengas
-  'https://tu-frontend.vercel.app'
+  'https://crm-frontend-l1kkw8x8q-proyectos-de-freddy-27b8ab50.vercel.app'
 ];
 
 app.use(cors({
