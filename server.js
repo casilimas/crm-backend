@@ -13,8 +13,8 @@ const app = express();
 // 🛡️ Middleware CORS (permitir orígenes seguros)
 const allowedOrigins = [
   'http://localhost:5173',
-  // 👇 Reemplaza esta línea con el dominio real de tu frontend cuando lo tengas
-  'https://crm-frontend-l1kkw8x8q-proyectos-de-freddy-27b8ab50.vercel.app'
+  'https://crm-frontend-l1kkw8x8q-proyectos-de-freddy-27b8ab50.vercel.app',
+  'https://crm-frontend-sable-ten.vercel.app' // ✅ nuevo dominio agregado
 ];
 
 app.use(cors({
